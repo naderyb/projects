@@ -1,3 +1,8 @@
+{
+nom: youb nader
+instagram: unnamed0._
+program: change color of the terminal in pascal XE
+}
 Program couleur_terminal;
 Uses Wincrt;
 //-----------------------------------------------------------------------------
@@ -7,13 +12,13 @@ Procedure ChangeBackgroundColor(color: Byte);
 Begin
   TextBackground(color);
   Clrscr;
-  //vider l'ecran du terminal pour ne laisser que la couleur demandé
+  //vider l'ecran du terminal pour ne laisser que la couleur demandÃ©
 End;
 //---------------------------------------------------------------------------
 Begin
   ChangeBackgroundColor(0);
 
-(*vous devez appeler la procedure avant d'ecrire la 1ère ligne de code
+(*vous devez appeler la procedure avant d'ecrire la 1Ã¨re ligne de code
 	(optionel) j'ai mis 0 parceque c'est le code de la couleur noir mais vous pouvez le changer*)
   textcolor(white);
 
