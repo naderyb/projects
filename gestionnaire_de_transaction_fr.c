@@ -1,3 +1,8 @@
+/*nom: youb nader
+instagram: unnamed0._
+class: 1y
+programme: gestionnaire de transaction*/
+//this version is in french
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
