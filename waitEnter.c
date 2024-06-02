@@ -1,6 +1,7 @@
 /*youb nader 
 instgram: unnamed0._
-class: 1y */
+class: 1y
+program: wait for enter*/
 
 #include <stdio.h>
 
