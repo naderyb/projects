@@ -1,6 +1,6 @@
 /*youb nader
 instagram: unnamed0._
-program: vending machine*/
+program: progress bar*/
 
 #include <stdio.h>
 #include <stdlib.h>
