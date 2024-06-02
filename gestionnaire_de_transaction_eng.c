@@ -33,22 +33,22 @@ typedef Client TClient[MAX_CLIENTS];
 //-------------------------------------------------------------------------------------------------
 char* ReadPassword() {
     char Key;
-    char* Password = malloc(50 * sizeof(char)); // Allocate memory for password
+    char* Password = malloc(50 * sizeof(char)); //allocate memory for password
     if (Password == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
         exit(1);
     }
-    Password[0] = '\0'; // Initialize password as an empty string
+    Password[0] = '\0'; //initialize password as an empty string
     do {
-        Key = getch(); // Read a key without echoing it to the console
-        if (Key != '\r' && Key != '\b') { // If the key is not Enter or Backspace
+        Key = getch(); //read a key without echoing it to the console
+        if (Key != '\r' && Key != '\b') { //if the key is not Enter or Backspace
             printf("*");
-            strncat(Password, &Key, 1); // Concatenate the key to the password
-        } else if (Key == '\b' && strlen(Password) > 0) { // If the key is Backspace and the password is not empty
-            Password[strlen(Password) - 1] = '\0'; // Remove the last character from the password
-            printf("\b \b"); // Erase the character from the console
+            strncat(Password, &Key, 1); //concatenate the key to the password
+        } else if (Key == '\b' && strlen(Password) > 0) { //if the key is Backspace and the password is not empty
+            Password[strlen(Password) - 1] = '\0'; //remove the last character from the password
+            printf("\b \b"); //erase the character from the console
         }
-    } while (Key != '\r'); // Repeat until Enter is pressed
+    } while (Key != '\r'); //repeat until Enter is pressed
     printf("\n");
     return Password;
 }
@@ -94,7 +94,7 @@ void Depot(TClient* clients, int clientIndex) {
     printf("Please specify the deposit amount: ");
     scanf("%f", &Montant);
     printf("Please wait while your transaction is processing...\n");
-    usleep(4000000); // Sleep for 4000 milliseconds (4000 * 1000)
+    usleep(4000000); //sleep for 4000 milliseconds (4000 * 1000)
     Client* client = &((*clients)[clientIndex - 1]);
     int nbTransactions = client->NbTransactions;
     client->NbTransactions++;
