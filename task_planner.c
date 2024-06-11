@@ -4,6 +4,7 @@
 #include <time.h>
 #include <windows.h>
 #include <conio.h>
+
 //----------------------------------------------------------------
 #define MAX_TASKS 100
 #define MAX_NAME_LENGTH 100
@@ -27,6 +28,16 @@ void clear_screen() {
     system("cls");
 }
 //----------------------------------------------------------------
+void progress_bar() {
+    printf("[");
+    for (int i = 0; i < 40; i++) {
+        printf("#"); //character can be changed
+        fflush(stdout); //immediately display the character
+        Sleep(100); //sleep for 100 milliseconds (0.1 seconds)
+    }
+    printf("]\nDone\n");
+}
+//----------------------------------------------------------------
 void display_tasks() {
     clear_screen();
     printf("Task Planner\n");
@@ -46,10 +57,12 @@ void display_tasks() {
         }
     }
     set_console_color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); //reset to default color
-    printf("\nPress any key to return to the menu...");
+    printf("\npress any key to continue...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
+int validate_date(int year, int month, int day); // Prototype declaration
+
 void add_task() {
     if (task_count >= MAX_TASKS) {
         printf("Task limit reached.\n");
@@ -75,8 +88,9 @@ void add_task() {
     mktime(&new_task.due_date);
     new_task.is_completed = 0;
     tasks[task_count++] = new_task;
+    progress_bar();
     printf("Task added successfully.\n");
-    printf("Press any key to return to the menu...");
+    printf("press any key to continue ...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
@@ -119,7 +133,7 @@ void delete_task() {
     scanf("%d", &task_num);
     if (task_num < 1 || task_num > task_count) {
         printf("Invalid task number.\n");
-        printf("Press any key to return to the menu...");
+        printf("press any key to continue...");
         _getch(); //wait for a key press
         return;
     }
@@ -127,8 +141,9 @@ void delete_task() {
         tasks[i] = tasks[i + 1];
     }
     task_count--;
+    progress_bar();
     printf("Task deleted successfully.\n");
-    printf("Press any key to return to the menu...");
+    printf("press any key to continue...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
@@ -138,22 +153,25 @@ void mark_task_complete() {
     printf("\nEnter task number to mark as completed: ");
     scanf("%d", &task_num);
     if (task_num < 1 || task_num > task_count) {
+        progress_bar();
         printf("Invalid task number.\n");
-        printf("Press any key to return to the menu...");
+        printf("press any key to continue...");
         _getch(); //wait for a key press
         return;
     }
     tasks[task_num - 1].is_completed = 1;
+    progress_bar();
     printf("Task marked as completed.\n");
-    printf("Press any key to return to the menu...");
+    printf("press any key to continue...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
 void save_tasks_to_file() {
     FILE *file = fopen("tasks.txt", "w");
     if (!file) {
+        progress_bar();
         printf("Error opening file for writing.\n");
-        printf("Press any key to return to the menu...");
+        printf("press any key to continue...");
         _getch(); //wait for a key press
         return;
     }
@@ -162,16 +180,18 @@ void save_tasks_to_file() {
         fprintf(file, "%s;%s;%ld;%d\n", t.name, t.description, mktime(&t.due_date), t.is_completed);
     }
     fclose(file);
+    progress_bar();
     printf("Tasks saved to file successfully.\n");
-    printf("Press any key to return to the menu...");
+    printf("press any key to continue...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
 void load_tasks_from_file() {
     FILE *file = fopen("tasks.txt", "r");
     if (!file) {
+        progress_bar();
         printf("Error opening file for reading.\n");
-        printf("Press any key to return to the menu...");
+        printf("press any key to continue...");
         _getch(); //wait for a key press
         return;
     }
@@ -182,8 +202,9 @@ void load_tasks_from_file() {
         task_count++;
     }
     fclose(file);
+    progress_bar();
     printf("Tasks loaded from file successfully.\n");
-    printf("Press any key to return to the menu...");
+    printf("press any key to continue...");
     _getch(); //wait for a key press
 }
 //----------------------------------------------------------------
@@ -214,7 +235,7 @@ int main() {
     int choice = 0;
     int highlight = 1;
     int c;
-    load_tasks_from_file();
+    //load_tasks_from_file();
     while (1) {
         display_menu(highlight);
         c = _getch();
@@ -261,7 +282,7 @@ int main() {
                 case 7:
                     clear_screen();
                     save_tasks_to_file();
-                    printf("Goodbye!\n");
+                    printf("\nGoodbye!\n");
                     exit(0);
                 default:
                     break;
