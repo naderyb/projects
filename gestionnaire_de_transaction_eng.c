@@ -12,13 +12,13 @@ program: transaction manager*/
 #define MAX_CLIENTS 100
 #define MAX_TRANSACTIONS 100
 //-----------------------------------------------------------------------
-typedef struct {
+ struct {
     char TypeTransaction[50];
     float Montant;
     float SoldeApresTransaction;
 } Transaction;
 //------------------------------------------------------------------------
-typedef struct {
+ struct {
     char nom[50];
     char prenom[50];
     char ID[50];
@@ -29,7 +29,7 @@ typedef struct {
     int NbTransactions;
 } Client;
 //-------------------------------------------------------------------------------------------------
-typedef Client TClient[MAX_CLIENTS];
+ Client TClient[MAX_CLIENTS];
 //-------------------------------------------------------------------------------------------------
 char* ReadPassword() {
     char Key;
