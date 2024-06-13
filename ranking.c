@@ -24,7 +24,7 @@ int compare(const void *a, const void *b)
     return 0;
 }
 //------------------------------------------------------------------------------
-// procedure to capitalize the first letter of a name
+//procedure to capitalize the first letter of a name
 void capitalizeName(char *name)
 {
     if (name[0] != '\0')
@@ -45,7 +45,7 @@ int main()
         printf("Enter name of student %d: ", i + 1);
         fgets(students[i].name, MAX_NAME, stdin);
         students[i].name[strcspn(students[i].name, "\n")] = 0;
-        capitalizeName(students[i].name); // capitalize the first letter
+        capitalizeName(students[i].name); //capitalize the first letter
         printf("Enter score of student %d: ", i + 1);
         scanf("%f", &students[i].score);
         getchar();
@@ -64,13 +64,13 @@ int main()
         char reset[] = "\033[0m";
         if (students[i].score < 10)
         {
-            strcpy(colorScore, "\033[31m");  // red for score < 10
-            strcpy(colorStatus, "\033[31m"); // red for "Failed"
+            strcpy(colorScore, "\033[31m");  //red for score < 10
+            strcpy(colorStatus, "\033[31m"); //red for "Failed"
         }
         else
         {
-            strcpy(colorScore, "\033[32m");  // green for score >= 10
-            strcpy(colorStatus, "\033[32m"); // green for "Passed"
+            strcpy(colorScore, "\033[32m");  //green for score >= 10
+            strcpy(colorStatus, "\033[32m"); //green for "Passed"
         }
         printf("| %-5d | %s%-32s%s | %s%-6.2f%s | %s%-8s%s |\n", i + 1, colorName, students[i].name, reset, colorScore, students[i].score, reset, colorStatus, (students[i].score >= 10) ? "Passed" : "Failed", reset);
     }
