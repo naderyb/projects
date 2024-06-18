@@ -61,10 +61,10 @@ typedef struct Grade
 {
     int student_id;
     int class_id;
-    char grade[5]; //for exemple 20, 5, 16.5
+    char grade[5]; //for exemple 20, 5, 16.5/20
 } Grade;
 //-------------------------------------------------------------------
-//attendance record structure
+// attendance record structure
 typedef struct Attendance
 {
     int student_id;
