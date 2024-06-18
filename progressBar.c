@@ -2,6 +2,8 @@
 instagram: unnamed0._
 program: progress bar*/
 
+//this program might generate a warning in the usleep function but warinings can be ignored as long as the program works
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h> //for usleep() function
